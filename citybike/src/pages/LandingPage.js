@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/LandingPage.css'
+import "../styles/LandingPage.css";
 class LandingPage extends React.Component {
   render() {
     return (
@@ -9,7 +9,11 @@ class LandingPage extends React.Component {
           Please turn on your Wifi and input the city where you want to find a
           nearest citybike station
         </p>
-        This is a landing page
+        <div className="dashboard-input">
+          <input type="text" placeholder="City Name. Ex: New York" />
+          
+        </div>
+        <button className="dashboard-search-button"> <i class="prefix material-icons">search</i>Search</button>
       </div>
     );
   }

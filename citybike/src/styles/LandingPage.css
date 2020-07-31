@@ -1,3 +1,22 @@
 .inform-paragraph {
     font-size: 1.3rem;
 }
+
+.dashboard-input {
+    background-color: #f7f7f7;
+    width: 80%;
+    display: inline-block;
+}
+
+.dashboard-search-button {
+    height: 49px;
+    width: 10%;
+    margin-left: 20px;
+    transition: background-color 0.5s, border 0.5s, color 0.5;
+}
+
+.dashboard-search-button:hover {
+background-color: #008aca;
+border: none;
+color: #f7f7f7;
+}
