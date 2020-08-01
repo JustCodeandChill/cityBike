@@ -1,5 +1,10 @@
 import React from "react";
+import axios from 'axios';
+
 import "../styles/LandingPage.css";
+//components
+import Validate from '../components/FindCityandCountry';
+
 class LandingPage extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +15,8 @@ class LandingPage extends React.Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
+    
     let state = this;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -22,7 +28,7 @@ class LandingPage extends React.Component {
           longitude: long,
           latitude: lat,
         });
-      });
+      })
     } else {
       alert("Geolocation is not supported by this browser");
     }
@@ -37,6 +43,7 @@ class LandingPage extends React.Component {
           nearest citybike station. If error occurs, please reload and enable
           location asking
         </p>
+        <Validate />
         <div className="dashboard-input">
           <input type="text" placeholder="City Name. Ex: New York" />
         </div>

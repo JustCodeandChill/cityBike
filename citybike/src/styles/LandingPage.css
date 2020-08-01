@@ -10,8 +10,9 @@
 
 .dashboard-search-button {
     height: 49px;
-    width: 10%;
+    width: 50px;
     margin-left: 20px;
+    font-size: 0.8rem;
     transition: background-color 0.5s, border 0.5s, color 0.5;
 }
 
@@ -19,4 +20,12 @@
 background-color: #008aca;
 border: none;
 color: #f7f7f7;
+}
+
+.display {
+    display: block;
+}
+
+.not-display {
+    display: none;
 }
