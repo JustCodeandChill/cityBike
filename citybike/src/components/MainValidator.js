@@ -1,34 +1,66 @@
 import React from "react";
+import _ from 'lodash';
+import '../styles/Validator.css';
 import {
   getStationIdThatMatchCountryAndCitySearch,
   getStationIdThatMatchCountrySearch,
-  getStationIdThatMatchCitySearch
+  getStationIdThatMatchCitySearch,
 } from "../utils/getStationIdThatMatchCountryandCitySearch";
 
 class MainValidator extends React.Component {
-  render() {
-    console.log("in main validator", this.props.country, this.props.city);
-    {
-      console.log(
-        getStationIdThatMatchCountryAndCitySearch(
-          this.props.country,
-          this.props.city
-        )
-      );
-
-      console.log(
-        getStationIdThatMatchCountrySearch(
-          this.props.country
-        )
-      );
-
-      console.log(
-        getStationIdThatMatchCitySearch(
-          this.props.city
-        )
-      );
+     constructor(props){
+        super(props);
+        this.state = {
+            city : "",
+            country :"",
+            stationIdMatchesCityandCountry: [],
+            stationIdMatchesCountry: [],
+            stationIdMatchesCities: [],
+          };
     }
-    return <div>Main Validator</div>;
+
+check = async () => {
+    let dataMatchesCountryandCity = await getStationIdThatMatchCountryAndCitySearch(
+        this.props.country,
+        this.props.city
+      )
+    let dataMatchesCountry = await  getStationIdThatMatchCountrySearch(this.props.country);
+    let dataMatchesCities = await  getStationIdThatMatchCitySearch(this.props.city);
+
+    if (this.state.country !== this.props.country && this.state.city !== this.props.city) {
+        this.setState({
+            city: this.props.city,
+            country : this.props.country,
+            stationIdMatchesCityandCountry: dataMatchesCountryandCity,
+            stationIdMatchesCountry : dataMatchesCountry,
+            stationIdMatchesCities : dataMatchesCities
+          });
+    }
+}
+
+  render() {
+    console.log('before main vali check', this.props, this.state);
+      this.check();
+      console.log('after main vali check', this.props, this.state);
+    return (<div>
+        <h3>Result </h3>
+        <h4>Station in your city</h4>
+        <div className="grid">
+            {_.map( this.state.stationIdMatchesCities, (station) => {
+                console.log('in map', station)
+                return <div className="flex-item">{station}</div>
+            })}
+        </div>
+
+        <br/>
+        <h4>Station in your country</h4>
+        <div className="grid">
+            {_.map( this.state.stationIdMatchesCountry, (station) => {
+                console.log('in map', station)
+                return <div className="flex-item">{station}</div>
+            })}
+        </div>
+        </div>)
   }
 }
 

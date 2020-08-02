@@ -1,11 +1,11 @@
 import React from "react";
 import "../styles/LandingPage.css";
 //utils
-import {generateStationIdWithCountryandCitySpecifically} from '../utils/getStationIdThatMatchCountryandCitySearch';
+import { generateStationIdWithCountryandCitySpecifically } from "../utils/getStationIdThatMatchCountryandCitySearch";
 //components
-import Validate from '../components/FindCityandCountry';
-import Prompt from '../components/Validator';
-import MainValidator from '../components/MainValidator';
+import Validate from "../components/FindCityandCountry";
+import Prompt from "../components/Validator";
+import MainValidator from "../components/MainValidator";
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -14,8 +14,10 @@ class LandingPage extends React.Component {
       longitude: 0,
       latitude: 0,
       city: "",
-      country: ""
+      country: "",
     };
+    this.city = "";
+    this.country = "";
   }
 
   componentDidMount = async () => {
@@ -29,7 +31,7 @@ class LandingPage extends React.Component {
           longitude: long,
           latitude: lat,
         });
-      })
+      });
     } else {
       alert("Geolocation is not supported by this browser");
     }
@@ -37,21 +39,27 @@ class LandingPage extends React.Component {
 
   handleChange = (e) => {
     let choice = e.target.value || "";
-    choice = choice.split(", ")
+    choice = choice.split(", ");
     let country = choice[0];
     let countryArr = choice.slice(1);
-    let  city = countryArr.join(", ")
+    let city = countryArr.join(", ");
 
-    console.log('cc', country, city);
-    this.setState({
-        country : country,
-        city : city
-    })
+    this.country = country;
+    this.city = city;
   };
 
   handleClick = (e) => {
+    this.setState({
+      country: this.country,
+      city: this.city,
+    });
+  };
 
-  }
+  renderMainValidator = () => {
+    return (
+      <MainValidator city={this.state.city} country={this.state.country} />
+    );
+  };
   render() {
     return (
       <div className="container">
@@ -63,21 +71,25 @@ class LandingPage extends React.Component {
         </p>
         <Validate />
         <div className="dashboard-input">
-          <input type="text" placeholder="City Name. Ex: New York" onChange={this.handleChange} />
+          <input
+            type="text"
+            placeholder="City Name. Ex: New York"
+            onChange={this.handleChange}
+          />
         </div>
         <button className="dashboard-search-button" onClick={this.handleClick}>
           {" "}
           <i className="material-icons">search</i>Search
         </button>
 
-        <h5>
-          Current location: {this.state.latitude ? this.state.latitude : "null"}{" "} <br/>
-          {this.state.longitude ? this.state.longitude : "null"}
-        </h5>
-        <MainValidator {...this.state} />
+        {this.renderMainValidator()}
       </div>
     );
   }
 }
 
 export default LandingPage;
+// <h5>
+//   Current location: {this.state.latitude ? this.state.latitude : "null"}{" "} <br/>
+//   {this.state.longitude ? this.state.longitude : "null"}
+// </h5>

@@ -14,7 +14,6 @@ export const getStationIdThatMatchCountryAndCitySearch = async (
       d.country.toLowerCase() === country.toLowerCase() &&
       d.city.toLowerCase() === city.toLowerCase()
     ) {
-      console.log(d.country.toLowerCase(), country, d.city.toLowerCase(), city);
       matches.push(d);
     }
   });
@@ -22,7 +21,6 @@ export const getStationIdThatMatchCountryAndCitySearch = async (
   _.map(matches, (match) => {
     id.push(match.id);
   });
-  console.log("in getid country and city", id);
   return id;
 };
 
@@ -32,7 +30,6 @@ export const getStationIdThatMatchCountrySearch = async (country = "") => {
 
   _.map(data, (d) => {
     if (d.country.toLowerCase() === country.toLowerCase()) {
-      console.log(d.country.toLowerCase(), country);
       matches.push(d);
     }
   });
@@ -40,7 +37,6 @@ export const getStationIdThatMatchCountrySearch = async (country = "") => {
   _.map(matches, (match) => {
     id.push(match.id);
   });
-  console.log("in getid country", id);
   return id;
 };
 
@@ -50,7 +46,6 @@ export const getStationIdThatMatchCitySearch = async (city = "") => {
 
   _.map(data, (d) => {
     if (d.city.toLowerCase() === city.toLowerCase()) {
-      console.log(d.city.toLowerCase(), city);
       matches.push(d);
     }
   });
@@ -58,7 +53,6 @@ export const getStationIdThatMatchCitySearch = async (city = "") => {
   _.map(matches, (match) => {
     id.push(match.id);
   });
-  console.log("in getid city", id);
   return id;
 };
 export const generateStationIdWithLocation = async () => {
