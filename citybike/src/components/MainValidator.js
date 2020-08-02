@@ -6,6 +6,7 @@ import {
   getStationIdThatMatchCountrySearch,
   getStationIdThatMatchCitySearch,
 } from "../utils/getStationIdThatMatchCountryandCitySearch";
+import {Link} from 'react-router-dom';
 
 class MainValidator extends React.Component {
      constructor(props){
@@ -48,7 +49,7 @@ check = async () => {
         <div className="grid">
             {_.map( this.state.stationIdMatchesCities, (station) => {
                 console.log('in map', station)
-                return <div className="flex-item">{station}</div>
+                return <div className="flex-item" key={station}><Link to={`station/${station}`}>{station}</Link></div>
             })}
         </div>
 
@@ -57,7 +58,7 @@ check = async () => {
         <div className="grid">
             {_.map( this.state.stationIdMatchesCountry, (station) => {
                 console.log('in map', station)
-                return <div className="flex-item">{station}</div>
+                return <div className="flex-item" key={station}><Link to={`station/${station}`}>{station}</Link></div>
             })}
         </div>
         </div>)
