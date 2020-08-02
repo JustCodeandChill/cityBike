@@ -1,7 +1,7 @@
 import React from "react";
-import axios from 'axios';
-
 import "../styles/LandingPage.css";
+//utils
+import {generateStationIdWithCountryandCitySpecifically} from '../utils/getStationIdThatMatchCountryandCitySearch';
 //components
 import Validate from '../components/FindCityandCountry';
 
@@ -16,7 +16,7 @@ class LandingPage extends React.Component {
   }
 
   componentDidMount = async () => {
-    
+    console.log(generateStationIdWithCountryandCitySpecifically());
     let state = this;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
