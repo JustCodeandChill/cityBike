@@ -6,12 +6,21 @@ import {
 import React, { useState } from "react";
 
 function ValidateList() {
-    let [display, setDisplay] = useState(false);
+  let [display, setDisplay] = useState(false);
 
   return (
-    <div className="row grey lighten-2" onClick={() => setDisplay(!display)}>
+    <div className="row grey lighten-2" >
       <div className="col m12 l12 blue lighten-2 white-text">
-        <h6>Find out if your city or country have citybike service</h6>
+        <h6>
+          Find out if your city or country have citybike service{" "}
+          <i
+            className="material-icons"
+            style={{ float: "right", display: "inline", cursor:"pointer" }}
+            onClick={() => setDisplay(!display)}
+          >
+            search
+          </i>
+        </h6>
       </div>
 
       <div className={`${display ? "display" : "not-display"}`}>
@@ -30,6 +39,6 @@ function ValidateList() {
       </div>
     </div>
   );
-};
+}
 
 export default ValidateList;
