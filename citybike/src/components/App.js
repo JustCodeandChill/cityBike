@@ -8,7 +8,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        This is some content
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={LandingPage} />

@@ -1,10 +1,7 @@
 import React from "react";
 import "../styles/LandingPage.css";
-//utils
-import { generateStationIdWithCountryandCitySpecifically } from "../utils/getStationIdThatMatchCountryandCitySearch";
 //components
 import Validate from "../components/FindCityandCountry";
-import Prompt from "../components/Validator";
 import MainValidator from "../components/MainValidator";
 
 class LandingPage extends React.Component {
@@ -89,7 +86,4 @@ class LandingPage extends React.Component {
 }
 
 export default LandingPage;
-// <h5>
-//   Current location: {this.state.latitude ? this.state.latitude : "null"}{" "} <br/>
-//   {this.state.longitude ? this.state.longitude : "null"}
-// </h5>
+
