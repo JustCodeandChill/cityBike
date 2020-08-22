@@ -1,5 +1,5 @@
 # cityBike
-##Introduction
+## Introduction
 CityBike API is the project that visualize all the citybike station near the user's location for easier navigation and finding. This project implemented the cityBike API and use React to visualize the date.
 
 ## Prerequisites
